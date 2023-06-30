@@ -7,8 +7,7 @@ if (API) {
   recognition.lang = "ko-kr";
   const button = document.querySelector(".speech-recognition");
   const speechResult = document.querySelector(".result");
-  const photo1 = document.querySelector("#photo1 img"); // 수정: img 요소 선택
-  const gameEndMsg = document.querySelector("#game-end-msg"); // 수정: 게임 종료 메시지 요소
+  const photo1 = document.querySelector("#photo1");
 
   const imagePaths = ["세탁기.jpg"];
 
@@ -21,45 +20,36 @@ if (API) {
     for (const result of event.results) {
       const transcript = result[0].transcript;
       speechResult.textContent = transcript;
-  
+
       if (transcript.includes("감자")) {
-        changephoto("감자.jpg");
+        changephoto();
         count++;
       } else if (transcript.includes("고구마")) {
-        changephoto("고구마.jpg");
+        changephoto();
         count++;
       }
     }
   };
-  
-  function changephoto(imagePath) {
-    if (count >= 5) {
+
+  function changephoto() {
+    if (count == 5) {
       gameEndMsg.classList.remove("hidden");
       return;
     }
   
-    let photoToChange = null;
+    const randomIndex = Math.floor(Math.random() * imagePaths.length);
+    const randomImagePath = imagePaths[randomIndex];
+    imagePaths.splice(randomIndex, 1);
   
-    if (imagePath === "감자.jpg") {
-      photoToChange = photo1;
-    } else if (imagePath === "고구마.jpg") {
-      photoToChange = photo2;
+    // 말한 이미지에 해당하는 이미지 경로로 교체합니다.
+    if (randomImagePath === "감자.jpg") {
+      imagePaths.push("세탁기.jpg");
+    } else if (randomImagePath === "고구마.jpg") {
+      imagePaths.push("감자.jpg");
     }
   
-    if (photoToChange) {
-      const randomIndex = Math.floor(Math.random() * imagePaths.length);
-      const randomImagePath = imagePaths[randomIndex];
-      photoToChange.src = imagePath;
-  
-      // 이미지 경로에서 해당 이미지를 제거합니다.
-      imagePaths.splice(randomIndex, 1);
-  
-      if (photoToChange === photo1) {
-        photo2.src = randomImagePath;
-      } else if (photoToChange === photo2) {
-        photo1.src = randomImagePath;
-      }
-    }
+    const updatedRandomIndex = Math.floor(Math.random() * imagePaths.length);
+    const updatedRandomImagePath = imagePaths[updatedRandomIndex];
+    photo1.src = updatedRandomImagePath;
   }
-  
 }
