@@ -10,7 +10,7 @@ if (API) {
   const photo1 = document.querySelector("#photo1 img"); // 수정: img 요소 선택
   const gameEndMsg = document.querySelector("#game-end-msg"); // 수정: 게임 종료 메시지 요소
 
-  const imagePaths = ["감자.jpg", "고구마.jpg", "세탁기.jpg"]; // 수정: 감자와 고구마의 순서 변경
+  const imagePaths = ["세탁기.jpg"];
 
   button.addEventListener("click", () => {
     recognition.start();
@@ -44,6 +44,4 @@ if (API) {
     photo2.src = randomImagePath;
     imagePaths.splice(randomIndex, 1);
   }
-  
-
 }
