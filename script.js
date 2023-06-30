@@ -19,10 +19,10 @@ if (API) {
    recognition.onresult = (event) => {
     for(const result of event.results) {
         speechResult.textContent = result[0].transcript
+        if (transcript.includes("감자")) {
+            changephoto1();
+          }
     }
-    if (transcript.includes("감자")) {
-        changephoto1();
-      }
    }
    function changephoto1() {
     const photo1 = document.querySelector('#photo1');
