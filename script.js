@@ -38,9 +38,9 @@ if (API) {
 
   function getCurrentPhoto() {
     if (photo1.classList.contains('active')) {
-      return 'photo1';
+      return '감자';
     } else if (photo2.classList.contains('active')) {
-      return 'photo2';
+      return '고구마';
     }
   }
 
