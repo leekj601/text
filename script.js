@@ -1,3 +1,4 @@
+const API = window.SpeechRecognition || window.webkitSpeechRecognition
 if (API) {
     let count = 0;
     const recognition = new API();
