@@ -6,8 +6,8 @@ if (API) {
 
   recognition.continuous = true;
   recognition.lang = 'ko-kr';
-  let filename1 = '';
-  let filename2 = '';
+  let filename1 = '감자';
+  let filename2 = '고구마';
 
   const button = document.querySelector('.speech-recognition');
   const speechResult = document.querySelector('.result');
@@ -26,10 +26,10 @@ if (API) {
       const transcript = results[i][0].transcript;
       speechResult.textContent = transcript;
 
-      if (transcript.includes(filename1)) {
+      if (transcript.includes(filename1)&& !transcript.includes(filename2)) {
         changephoto1();
       }
-      if (transcript.includes(filename2)) {
+      if (transcript.includes(filename2)&& !transcript.includes(filename1)) {
         changephoto2();
       }
     }
