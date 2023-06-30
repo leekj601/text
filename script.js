@@ -21,31 +21,29 @@ if (API) {
     for (const result of event.results) {
       const transcript = result[0].transcript;
       speechResult.textContent = transcript;
-
+  
       if (transcript.includes("감자")) {
-        changephoto();
+        changephoto("감자.jpg");
         count++;
       } else if (transcript.includes("고구마")) {
-        changephoto();
+        changephoto("고구마.jpg");
         count++;
       }
     }
   };
-
-  function changephoto() {
+  
+  function changephoto(imagePath) {
     if (count >= 5) {
       gameEndMsg.classList.remove("hidden");
       return;
     }
-
+  
     const randomIndex = Math.floor(Math.random() * imagePaths.length);
     const randomImagePath = imagePaths[randomIndex];
-    photo1.src = randomImagePath;
+    photo1.src = imagePath;
+    photo2.src = randomImagePath;
     imagePaths.splice(randomIndex, 1);
   }
+  
 
-  const randomIndex = Math.floor(Math.random() * imagePaths.length);
-  const randomImagePath = imagePaths[randomIndex];
-  photo1.src = randomImagePath;
-  imagePaths.splice(randomIndex, 1);
 }
