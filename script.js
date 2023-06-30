@@ -9,18 +9,11 @@ if (API) {
 
   const button = document.querySelector('.speech-recognition');
   const speechResult = document.querySelector('.result');
-  const photo1 = document.querySelector('#photo1');
-  const photo2 = document.querySelector('#photo2');
 
   button.addEventListener('click', () => {
     recognition.start();
     button.textContent = 'Listening...';
   });
-
-  recognition.onstart = () => {
-    recognizeImage(photo1);
-    recognizeImage(photo2);
-  };
 
   recognition.onresult = (event) => {
     const results = event.results;
@@ -29,39 +22,31 @@ if (API) {
       const transcript = results[i][0].transcript;
       speechResult.textContent = transcript;
 
-      if (transcript.includes(photo1.src.split('/').pop().split('.')[0])) {
-        changePhoto(photo1);
-        break;
-      }
-      if (transcript.includes(photo2.src.split('/').pop().split('.')[0])) {
-        changePhoto(photo2);
-        break;
+      for (let j = 0; j < imagePaths.length; j++) {
+        const imageName = imagePaths[j].split('.')[0]; // 사진 파일 이름에서 확장자 제거
+        if (transcript.includes(imageName)) {
+          changePhoto(j);
+          break;
+        }
       }
     }
   };
 
-  function recognizeImage(photo) {
-    const imageIndex = getRandomImageIndex();
-    const imagePath = imagePaths[imageIndex];
-    photo.src = imagePath;
-  }
+  function changePhoto(photoNumber) {
+    const photo1 = document.querySelector('#photo1');
+    const photo2 = document.querySelector('#photo2');
 
-  function changePhoto(photo) {
-    const currentImageName = photo.src.split('/').pop().split('.')[0];
-    const newImageIndex = getRandomImageIndexExcept(currentImageName);
-    const newImagePath = imagePaths[newImageIndex];
-    photo.src = newImagePath;
-  }
+    let newImageIndex;
+    do {
+      newImageIndex = Math.floor(Math.random() * imagePaths.length);
+    } while (newImageIndex === photoNumber);
 
-  function getRandomImageIndex() {
-    return Math.floor(Math.random() * imagePaths.length);
-  }
-
-  function getRandomImageIndexExcept(excludedImageName) {
-    const availableImages = imagePaths.filter((imagePath) => {
-      const imageName = imagePath.split('/').pop().split('.')[0];
-      return imageName !== excludedImageName;
-    });
-    return Math.floor(Math.random() * availableImages.length);
+    if (photoNumber === 0) {
+      const image = imagePaths[newImageIndex];
+      photo1.src = image;
+    } else if (photoNumber === 1) {
+      const image = imagePaths[newImageIndex];
+      photo2.src = image;
+    }
   }
 }
