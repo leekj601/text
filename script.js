@@ -24,16 +24,16 @@ if (API) {
       speechResult.textContent = transcript;
 
       if (transcript.includes("감자")) {
-        changephoto(photo1);
+        changephoto(photo1, "감자.jpg");
         count++;
       } else if (transcript.includes("고구마")) {
-        changephoto(photo2);
+        changephoto(photo2, "고구마.jpg");
         count++;
       }
     }
   };
 
-  function changephoto(photo) {
+  function changephoto(photo, imagePath) {
     if (count >= 5) {
       gameEndMsg.classList.remove("hidden");
       return;
@@ -41,9 +41,9 @@ if (API) {
 
     const randomIndex = Math.floor(Math.random() * imagePaths.length);
     const randomImagePath = imagePaths[randomIndex];
-    photo.src = randomImagePath;
+    photo.src = imagePath;
     imagePaths.splice(randomIndex, 1);
   }
 
-  changephoto(photo1);
+  changephoto(photo1, imagePaths[0]);
 }
