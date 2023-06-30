@@ -1,7 +1,7 @@
 const API = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 if (API) {
-  const imagePaths = ['감자.jpg', '고구마.jpg', '고양이.jpg', '강아지.jpg', '세탁기.jpg', '밤.jpg'];
+  const imagePaths = ['감자.jpg','고구마.jpg','고양이.jpg', '강아지.jpg', '세탁기.jpg','밤.jpg'];
   const recognition = new API();
 
   recognition.continuous = true;
@@ -9,8 +9,6 @@ if (API) {
 
   const button = document.querySelector('.speech-recognition');
   const speechResult = document.querySelector('.result');
-  const photo1 = document.querySelector('#photo1');
-  const photo2 = document.querySelector('#photo2');
 
   button.addEventListener('click', () => {
     recognition.start();
@@ -24,35 +22,23 @@ if (API) {
       const transcript = results[i][0].transcript;
       speechResult.textContent = transcript;
 
-      for (let j = 0; j < imagePaths.length; j++) {
-        const imageName = imagePaths[j].split('.')[0]; // 사진 파일 이름에서 확장자 제거
-        if (transcript.includes(imageName)) {
-          changePhoto(j);
-          break;
-        }
+      if (transcript.includes('감자')) {
+        changephoto1();
+      }
+      if (transcript.includes('고구마')) {
+        changephoto2();
       }
     }
   };
 
-  // 초기 로딩 시 첫 번째 사진 인식
-  recognition.onstart = () => {
-    const transcript = imagePaths[0].split('.')[0]; // 첫 번째 사진 파일 이름
-    speechResult.textContent = transcript;
-    changePhoto(0);
-  };
-
-  function changePhoto(photoNumber) {
-    let newImageIndex;
-    do {
-      newImageIndex = Math.floor(Math.random() * imagePaths.length);
-    } while (newImageIndex === photoNumber);
-
-    if (photoNumber === 0) {
-      const image = imagePaths[newImageIndex];
-      photo1.src = image;
-    } else if (photoNumber === 1) {
-      const image = imagePaths[newImageIndex];
-      photo2.src = image;
-    }
+  function changephoto1() {
+    const photo1 = document.querySelector('#photo1');
+    const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
+    photo1.src = image;
+  }
+  function changephoto2() {
+    const photo2 = document.querySelector('#photo2');
+    const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
+    photo2.src = image;
   }
 }
