@@ -18,7 +18,8 @@ if (API) {
 
    recognition.onresult = (event) => {
     for(const result of event.results) {
-        speechResult.textContent = result[0].transcript
+        const transcript = event.results[0][0].transcript;
+        speechResult.textContent = transcript;
         if (transcript.includes("감자")) {
             changephoto1();
           }
