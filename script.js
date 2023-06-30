@@ -9,6 +9,8 @@ if (API) {
 
   const button = document.querySelector('.speech-recognition');
   const speechResult = document.querySelector('.result');
+  const photo1 = document.querySelector('#photo1');
+  const photo2 = document.querySelector('#photo2');
 
   button.addEventListener('click', () => {
     recognition.start();
@@ -32,10 +34,14 @@ if (API) {
     }
   };
 
-  function changePhoto(photoNumber) {
-    const photo1 = document.querySelector('#photo1');
-    const photo2 = document.querySelector('#photo2');
+  // 초기 로딩 시 첫 번째 사진 인식
+  recognition.onstart = () => {
+    const transcript = imagePaths[0].split('.')[0]; // 첫 번째 사진 파일 이름
+    speechResult.textContent = transcript;
+    changePhoto(0);
+  };
 
+  function changePhoto(photoNumber) {
     let newImageIndex;
     do {
       newImageIndex = Math.floor(Math.random() * imagePaths.length);
