@@ -8,6 +8,7 @@ if (API) {
   const button = document.querySelector(".speech-recognition");
   const speechResult = document.querySelector(".result");
   const photo1 = document.querySelector("#photo1");
+  const gameEndMsg = document.querySelector("#game-end-msg"); // 추가: 게임 종료 메시지 요소
 
   const imagePaths = ["세탁기.jpg"];
 
@@ -32,8 +33,8 @@ if (API) {
   };
 
   function changephoto() {
-    if (count == 5) {
-      gameEndMsg.classList.remove("hidden");
+    if (count >= 5) { // 수정: count가 5 이상인 경우
+      gameEndMsg.classList.remove("hidden"); // 추가: 게임 종료 메시지를 보이도록 함
       return;
     }
 
