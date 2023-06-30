@@ -4,12 +4,12 @@ if (API){
     count=0;
     const recognition=new API()
     recognition.continouse=true;
-    recognition.lang="ko-GB"
+    recognition.lang="ko-kr"
     const button=document.querySelector('.speech-recognition')
     const speechResult=document.querySelector('.result')
 
     const imagePaths=[
-
+        '세탁기.jpg',
     ]
 
     button.addEventListener('click',()=>{
@@ -21,11 +21,11 @@ if (API){
         for(const result of event.results){
             speechResult.textContent=result[0].transcript
 
-            if(transcript.includes('감자.jpg'))
+            if(transcript.includes('감자'))
             {
                 changephoto()
                 count++;
-            }else if (transcript.includes('고구마.jpg'))
+            }else if (transcript.includes('고구마'))
             {
                 changephoto()
                 count++;
