@@ -32,8 +32,11 @@ if (API) {
       }
     }
   };
+
+  window.addEventListener('load', () => {
     changePhoto(photo1);
     changePhoto(photo2);
+  });
 
   function changePhoto(photoElement) {
     const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
