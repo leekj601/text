@@ -1,7 +1,7 @@
 const API = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 if (API) {
-  const imagePaths = ['고양이.jpg', '강아지.jpg', '세탁기.jpg'];
+  const imagePaths = ['감자.jpg','고구마.jpg','고양이.jpg', '강아지.jpg', '세탁기.jpg'];
   const recognition = new API();
 
   recognition.continuous = true;
@@ -22,10 +22,10 @@ if (API) {
       const transcript = results[i][0].transcript;
       speechResult.textContent = transcript;
 
-      if (transcript.includes('감자')) {
+      if (transcript.includes(imagePaths[0].split('.')[0])) {
         changephoto1();
       }
-      if (transcript.includes('고구마')) {
+      if (transcript.includes(imagePaths[0].split('.')[0])) {
         changephoto2();
       }
     }
