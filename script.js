@@ -19,5 +19,12 @@ if (API) {
     for(const result of event.results) {
         speechResult.textContent = result[0].transcript
     }
+    if (transcript.includes("감자")) {
+        changephoto1();
+      }
    }
+   function changephoto1() {
+    const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
+    photo1.src = `src/${image}`;
+  }
 }
