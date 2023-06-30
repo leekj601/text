@@ -25,6 +25,9 @@ if (API) {
       if (transcript.includes('감자')) {
         changephoto1();
       }
+      if (transcript.includes('감자')) {
+        changephoto2();
+      }
     }
   };
 
@@ -32,5 +35,10 @@ if (API) {
     const photo1 = document.querySelector('#photo1');
     const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
     photo1.src = image;
+  }
+  function changephoto2() {
+    const photo2 = document.querySelector('#photo2');
+    const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
+    photo2.src = image;
   }
 }
