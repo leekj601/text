@@ -16,20 +16,19 @@ if (API) {
     })
   
     recognition.onresult = (event) => {
+      let transcript = "";
       for (const result of event.results) {
-        const transcript = result[0].transcript;
+        transcript = result[0].transcript;
         speechResult.textContent = transcript;
       }
-      if(transcript.includes("감자"))
-      {
-        changephoto1()
+      if (transcript.includes("감자")) {
+        changephoto1();
       }
     }
-
-    function changephoto1()
-    {
-        const image=imagePaths[Math.floor(Math.random()*imagePaths.length)];
-        const photo1=`src/${image}`;
+  
+    function changephoto1() {
+      const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
+      photo1.src = `src/${image}`;
     }
   }
   
