@@ -38,17 +38,21 @@ if (API) {
 
   function changephoto1() {
     const availableImages = imagePaths.filter((path) => !usedImages.includes(path));
-    const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
-    filename1=extractFileName(image);
-    photo1.src = image;
-    usedImages.push(image);
+    if (availableImages.length > 0) {
+        const image = availableImages[Math.floor(Math.random() * availableImages.length)];
+        filename1 = extractFileName(image);
+        photo1.src = image;
+        usedImages.push(image);
+      }
   }
   function changephoto2() {
     const availableImages = imagePaths.filter((path) => !usedImages.includes(path));
-    const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
-    filename2=extractFileName(image);
-    photo2.src = image;
-    usedImages.push(image);
+    if (availableImages.length > 0) {
+        const image = availableImages[Math.floor(Math.random() * availableImages.length)];
+        filename2 = extractFileName(image);
+        photo2.src = image;
+        usedImages.push(image);
+      }
   }
   function extractFileName(imagePath) {
     return imagePath.match(/(.+)\./)[1];
