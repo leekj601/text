@@ -33,7 +33,7 @@ if (API) {
 
   function changephoto() {
     if (count == 5) {
-      console.log("게임 끝.");
+      gameEndMsg.classList.remove("hidden");
       return;
     }
 
