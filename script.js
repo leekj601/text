@@ -33,13 +33,13 @@ if (API) {
     }
   };
 
-  function changePhoto(photo) {
-    let newImageIndex;
-    do {
-      newImageIndex = Math.floor(Math.random() * imagePaths.length);
-    } while (imagePaths[newImageIndex] === photo.src);
+  // 초기 로딩 시 첫 번째 사진 랜덤으로 선택
+  window.addEventListener('load', () => {
+    changePhoto(photo1);
+  });
 
-    const newImage = imagePaths[newImageIndex];
-    photo.src = newImage;
+  function changePhoto(photoElement) {
+    const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
+    photoElement.src = image;
   }
 }
