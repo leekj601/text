@@ -42,7 +42,7 @@ if (API) {
 
   function changePhoto(photoElement) {
     const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
-    filename = extractFileName(image);
+    const filename = extractFileName(image);
     photoElement.src = image;
     return filename;
   }
