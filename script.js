@@ -1,7 +1,7 @@
 const API = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 if (API) {
-  const imagePaths = ['감자.jpg','고구마.jpg','고양이.jpg', '강아지.jpg', '세탁기.jpg'];
+  const imagePaths = ['감자.jpg', '고구마.jpg', '고양이.jpg', '강아지.jpg', '세탁기.jpg'];
   const recognition = new API();
 
   recognition.continuous = true;
@@ -22,23 +22,34 @@ if (API) {
       const transcript = results[i][0].transcript;
       speechResult.textContent = transcript;
 
-      if (transcript.includes(imagePaths[0].split('.')[0])) {
-        changephoto1();
-      }
-      if (transcript.includes(imagePaths[0].split('.')[0])) {
-        changephoto2();
+      for (let j = 0; j < imagePaths.length; j++) {
+        const imageName = imagePaths[j].split('.')[0];
+        if (transcript.includes(imageName)) {
+          changephoto(j);
+          break;
+        }
       }
     }
   };
 
-  function changephoto1() {
+  function changephoto(photoNumber) {
     const photo1 = document.querySelector('#photo1');
-    const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
-    photo1.src = image;
-  }
-  function changephoto2() {
     const photo2 = document.querySelector('#photo2');
-    const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
-    photo2.src = image;
+    
+    if (photoNumber === 0) {
+      let randomIndex = Math.floor(Math.random() * imagePaths.length);
+      while (randomIndex === 0) {
+        randomIndex = Math.floor(Math.random() * imagePaths.length);
+      }
+      const image = imagePaths[randomIndex];
+      photo1.src = image;
+    } else if (photoNumber === 1) {
+      let randomIndex = Math.floor(Math.random() * imagePaths.length);
+      while (randomIndex === 1) {
+        randomIndex = Math.floor(Math.random() * imagePaths.length);
+      }
+      const image = imagePaths[randomIndex];
+      photo2.src = image;
+    }
   }
 }
