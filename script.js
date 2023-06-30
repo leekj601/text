@@ -17,6 +17,12 @@ if (API) {
     button.textContent = 'Listening...';
   });
 
+  recognition.onstart = () => {
+    // 초기 이미지 인식
+    recognizeImage(photo1);
+    recognizeImage(photo2);
+  };
+
   recognition.onresult = (event) => {
     const results = event.results;
 
@@ -26,25 +32,28 @@ if (API) {
 
       if (transcript.includes(photo1.src)) {
         changePhoto(photo1);
+        break; // 이미지 변경 후 반복문 종료
       }
       if (transcript.includes(photo2.src)) {
         changePhoto(photo2);
+        break; // 이미지 변경 후 반복문 종료
       }
     }
   };
 
+  function recognizeImage(photo) {
+    const imageIndex = getRandomImageIndex();
+    const imagePath = imagePaths[imageIndex];
+    photo.src = imagePath;
+  }
+
   function changePhoto(photo) {
-    const newImageIndex = getRandomImageIndex(photo.src);
+    const newImageIndex = getRandomImageIndex();
     const newImagePath = imagePaths[newImageIndex];
     photo.src = newImagePath;
   }
 
-  function getRandomImageIndex(currentImagePath) {
-    const currentIndex = imagePaths.findIndex(path => path === currentImagePath);
-    let newIndex;
-    do {
-      newIndex = Math.floor(Math.random() * imagePaths.length);
-    } while (newIndex === currentIndex);
-    return newIndex;
+  function getRandomImageIndex() {
+    return Math.floor(Math.random() * imagePaths.length);
   }
 }
