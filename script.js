@@ -13,13 +13,23 @@ if (API) {
     button.addEventListener("click", () => {
       recognition.start();
       button.textContent = "Listening...";
-    });
+    })
   
     recognition.onresult = (event) => {
       for (const result of event.results) {
         const transcript = result[0].transcript;
         speechResult.textContent = transcript;
       }
-    };
+      if(transcript.includes("감자"))
+      {
+        changephoto1()
+      }
+    }
+
+    function changephoto1()
+    {
+        const image=imagePaths[Math.floor(Math.random()*imagePaths.length)];
+        const photo1=`src/${image}`;
+    }
   }
   
