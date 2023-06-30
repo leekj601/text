@@ -24,22 +24,14 @@ if (API) {
       const transcript = results[i][0].transcript;
       speechResult.textContent = transcript;
 
-      const photo1Name = extractImageName(photo1.src);
-      const photo2Name = extractImageName(photo2.src);
-
-      if (transcript.includes(photo1Name)) {
+      if (transcript.includes(photo1.src)) {
         changePhoto(photo1);
       }
-      if (transcript.includes(photo2Name)) {
+      if (transcript.includes(photo2.src)) {
         changePhoto(photo2);
       }
     }
   };
-
-  function extractImageName(imagePath) {
-    const imageName = imagePath.split('/').pop().split('.')[0];
-    return imageName;
-  }
 
   function changePhoto(photo) {
     const newImageIndex = getRandomImageIndex(photo.src);
