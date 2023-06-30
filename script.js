@@ -9,7 +9,7 @@ if (API) {
   const speechResult = document.querySelector(".result");
   const photo1 = document.querySelector("#photo1");
 
-  const imagePaths = ["세탁기.jpg"];
+  const imagePaths = ["감자.jpg", "세탁기.jpg"];
 
   button.addEventListener("click", () => {
     recognition.start();
@@ -32,29 +32,29 @@ if (API) {
   };
 
   function changephoto() {
-    if (count == 5) {
+    if (count >= 5) {
       gameEndMsg.classList.remove("hidden");
       return;
     }
-  
+
     const randomIndex = Math.floor(Math.random() * imagePaths.length);
     const randomImagePath = imagePaths[randomIndex];
     imagePaths.splice(randomIndex, 1);
-  
-    let updatedImagePath = "";
-    
-    // 말한 이미지에 해당하는 이미지 경로로 교체합니다.
-    if (randomImagePath === "감자.jpg") {
-      updatedImagePath = "세탁기.jpg";
-    } else if (randomImagePath === "고구마.jpg") {
-      updatedImagePath = "감자.jpg";
+
+    const potatoIndex = imagePaths.indexOf("감자.jpg");
+    if (potatoIndex !== -1) {
+      const temp = imagePaths[potatoIndex];
+      imagePaths[potatoIndex] = randomImagePath;
+      imagePaths.push(temp);
     }
-  
-    imagePaths.push(updatedImagePath);
-  
+
     const updatedRandomIndex = Math.floor(Math.random() * imagePaths.length);
     const updatedRandomImagePath = imagePaths[updatedRandomIndex];
     photo1.src = updatedRandomImagePath;
   }
-  
+
+  const randomIndex = Math.floor(Math.random() * imagePaths.length);
+  const randomImagePath = imagePaths[randomIndex];
+  photo1.src = randomImagePath;
+  imagePaths.splice(randomIndex, 1);
 }
