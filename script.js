@@ -25,7 +25,7 @@ if (API) {
       if (transcript.includes('감자')) {
         changephoto1();
       }
-      if (transcript.includes('감자')) {
+      if (transcript.includes('고구마')) {
         changephoto2();
       }
     }
