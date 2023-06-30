@@ -9,6 +9,8 @@ if (API) {
 
   const button = document.querySelector('.speech-recognition');
   const speechResult = document.querySelector('.result');
+  const photo1 = document.querySelector('#photo1');
+  const photo2 = document.querySelector('#photo2');
 
   button.addEventListener('click', () => {
     recognition.start();
@@ -22,24 +24,22 @@ if (API) {
       const transcript = results[i][0].transcript;
       speechResult.textContent = transcript;
 
-      const currentPhoto1Name = getFileName(photo1.src);
-      const currentPhoto2Name = getFileName(photo2.src);
-
-      if (transcript.includes(currentPhoto1Name)) {
+      if (transcript.includes(photo1.src.split('/').pop().split('.')[0])) {
         changePhoto(photo1);
       }
-      if (transcript.includes(currentPhoto2Name)) {
+      if (transcript.includes(photo2.src.split('/').pop().split('.')[0])) {
         changePhoto(photo2);
       }
     }
   };
 
-  function getFileName(path) {
-    return path.split('/').pop().split('.')[0];
-  }
-
   function changePhoto(photo) {
-    const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
-    photo.src = image;
+    let newImageIndex;
+    do {
+      newImageIndex = Math.floor(Math.random() * imagePaths.length);
+    } while (imagePaths[newImageIndex] === photo.src);
+
+    const newImage = imagePaths[newImageIndex];
+    photo.src = newImage;
   }
 }
