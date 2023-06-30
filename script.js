@@ -50,12 +50,12 @@ if (API) {
 
   function changephoto1() {
     const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
-    const filename1=extractFileName(image);
+    filename1=extractFileName(image);
     photo1.src = image;
   }
   function changephoto2() {
     const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
-    const filename2=extractFileName(image);
+    filename2=extractFileName(image);
     photo2.src = image;
   }
   function extractFileName(imagePath) {
