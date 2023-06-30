@@ -13,6 +13,7 @@ if (API) {
   const speechResult = document.querySelector('.result');
   const photo1 = document.querySelector('#photo1');
   const photo2 = document.querySelector('#photo2');
+  const usedImages = [];
 
   button.addEventListener('click', () => {
     recognition.start();
@@ -36,16 +37,18 @@ if (API) {
   };
 
   function changephoto1() {
+    const availableImages = imagePaths.filter((path) => !usedImages.includes(path));
     const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
     filename1=extractFileName(image);
     photo1.src = image;
-    imagePaths = imagePaths.filter((path, i) => i !== index);
+    usedImages.push(image);
   }
   function changephoto2() {
+    const availableImages = imagePaths.filter((path) => !usedImages.includes(path));
     const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
     filename2=extractFileName(image);
     photo2.src = image;
-    imagePaths = imagePaths.filter((path, i) => i !== index);
+    usedImages.push(image);
   }
   function extractFileName(imagePath) {
     return imagePath.match(/(.+)\./)[1];
