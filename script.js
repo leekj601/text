@@ -21,13 +21,13 @@ if (API) {
     const results = event.results;
 
     for (let i = 0; i < results.length; i++) {
-      const transcript = results[i][0].transcript.toLowerCase(); // 대소문자 구분 없이 비교하기 위해 소문자로 변환
+      const transcript = results[i][0].transcript.toLowerCase();
       speechResult.textContent = transcript;
 
-      if (transcript.includes(photo1.src.split('/').pop().split('.')[0].toLowerCase())) {
+      if (transcript.includes('감자')) {
         changePhoto(photo1);
       }
-      if (transcript.includes(photo2.src.split('/').pop().split('.')[0].toLowerCase())) {
+      if (transcript.includes('고구마')) {
         changePhoto(photo2);
       }
     }
@@ -36,7 +36,6 @@ if (API) {
   // 초기 로딩 시 첫 번째 사진 랜덤으로 선택
   window.addEventListener('load', () => {
     changePhoto(photo1);
-    changePhoto(photo2);
   });
 
   function changePhoto(photoElement) {
