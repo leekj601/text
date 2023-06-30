@@ -10,7 +10,7 @@ if (API) {
   const photo1 = document.querySelector("#photo1 img"); // 수정: img 요소 선택
   const gameEndMsg = document.querySelector("#game-end-msg"); // 수정: 게임 종료 메시지 요소
 
-  const imagePaths = ["세탁기.jpg"];
+  const imagePaths = ["세탁기.jpg","감자.jpg","고구마.jpg"];
 
   button.addEventListener("click", () => {
     recognition.start();
