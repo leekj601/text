@@ -22,23 +22,33 @@ if (API) {
       const transcript = results[i][0].transcript;
       speechResult.textContent = transcript;
 
-      if (transcript.includes('감자')) {
+      if (transcript.includes(filename1)) {
         changephoto1();
       }
-      if (transcript.includes('고구마')) {
+      if (transcript.includes(filename2)) {
         changephoto2();
       }
     }
   };
 
+  window.addEventListener('load', () => {
+    changePhoto1(photo1);
+    changePhoto2(photo2);
+  });
+
   function changephoto1() {
     const photo1 = document.querySelector('#photo1');
     const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
+    const filename1=extractFileName(image);
     photo1.src = image;
   }
   function changephoto2() {
     const photo2 = document.querySelector('#photo2');
     const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
+    const filename2=extractFileName(image);
     photo2.src = image;
+  }
+  function extractFileName(imagePath) {
+    return imagePath.match(/(.+)\./)[1];
   }
 }
