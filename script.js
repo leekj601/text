@@ -1,6 +1,7 @@
 const API = window.SpeechRecognition || window.webkitSpeechRecognition
 
 if (API) {
+    const imagePaths = ['고양이.jpg', '강아지.jpg', '세탁기.jpg'];
    const recognition = new API()
 
    recognition.continouse = true;
