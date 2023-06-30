@@ -34,8 +34,8 @@ if (API) {
   };
 
   window.addEventListener('load', () => {
-    changePhoto(photo1);
-    changePhoto(photo2);
+    changePhoto1(photo1);
+    changePhoto2(photo2);
   });
 
   function changePhoto(photoElement) {
