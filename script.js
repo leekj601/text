@@ -21,11 +21,11 @@ if (API){
         for(const result of event.results){
             speechResult.textContent=result[0].transcript
 
-            if(transcript.includes('potato'))
+            if(transcript.includes('감자.jpg'))
             {
                 changephoto()
                 count++;
-            }else if (transcript.includes('sweet potato'))
+            }else if (transcript.includes('고구마.jpg'))
             {
                 changephoto()
                 count++;
