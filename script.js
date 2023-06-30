@@ -6,6 +6,8 @@ if (API) {
 
   recognition.continuous = true;
   recognition.lang = 'ko-kr';
+  let filename1 = '';
+  let filename2 = '';
 
   const button = document.querySelector('.speech-recognition');
   const speechResult = document.querySelector('.result');
@@ -32,9 +34,17 @@ if (API) {
   };
 
   window.addEventListener('load', () => {
-    changePhoto1(photo1);
-    changePhoto2(photo2);
+    filename1 = changePhoto(photo1);
+    filename2 = changePhoto(photo2);
   });
+
+  function changePhoto(photoElement) {
+    const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
+    const filename = extractFileName(image);
+    photoElement.src = image;
+    return filename;
+  }
+
 
   function changephoto1() {
     const photo1 = document.querySelector('#photo1');
