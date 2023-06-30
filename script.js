@@ -13,6 +13,8 @@ if (API) {
   const speechResult = document.querySelector('.result');
   const photo1 = document.querySelector('#photo1');
   const photo2 = document.querySelector('#photo2');
+  const message1 = document.querySelector('#message1');
+  const message2 = document.querySelector('#message2');
   const usedImages = [];
 
   button.addEventListener('click', () => {
@@ -43,6 +45,10 @@ if (API) {
         filename1 = extractFileName(image);
         photo1.src = image;
         usedImages.push(image);
+        message1.textContent = '';
+      }
+      else {
+        message1.textContent = '이미지가 끝났습니다.';
       }
   }
   function changephoto2() {
@@ -52,6 +58,10 @@ if (API) {
         filename2 = extractFileName(image);
         photo2.src = image;
         usedImages.push(image);
+        message2.textContent = '';
+      }
+      else {
+        message2.textContent = '이미지가 다 나왔습니다.';
       }
   }
   function extractFileName(imagePath) {
