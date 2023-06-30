@@ -1,7 +1,7 @@
 const API = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 if (API) {
-  const imagePaths = ['감자.jpg', '고구마.jpg', '고양이.jpg', '강아지.jpg', '세탁기.jpg', '밤.jpg'];
+  const imagePaths = ['감자.jpg', '고구마.jpg', '고양이.jpg', '강아지.jpg', '세탁기.jpg'];
   const recognition = new API();
 
   recognition.continuous = true;
@@ -21,25 +21,32 @@ if (API) {
     const results = event.results;
 
     for (let i = 0; i < results.length; i++) {
-      const transcript = results[i][0].transcript.toLowerCase();
+      const transcript = results[i][0].transcript;
       speechResult.textContent = transcript;
 
-      if (transcript.includes('감자')) {
-        changePhoto(photo1);
-      }
-      if (transcript.includes('고구마')) {
-        changePhoto(photo2);
+      const currentPhoto = getCurrentPhoto();
+      if (transcript.includes(currentPhoto)) {
+        changePhoto(currentPhoto);
       }
     }
   };
 
   // 초기 로딩 시 첫 번째 사진 랜덤으로 선택
   window.addEventListener('load', () => {
-    changePhoto(photo1);
+    changePhoto('photo1');
   });
 
+  function getCurrentPhoto() {
+    if (photo1.classList.contains('active')) {
+      return 'photo1';
+    } else if (photo2.classList.contains('active')) {
+      return 'photo2';
+    }
+  }
+
   function changePhoto(photoElement) {
+    const photo = document.querySelector(`#${photoElement}`);
     const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
-    photoElement.src = image;
+    photo.src = image;
   }
 }
