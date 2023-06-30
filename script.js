@@ -27,6 +27,6 @@ if (API) {
    function changephoto1() {
     const photo1 = document.querySelector('#photo1');
     const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
-    photo1.src = "image";
+    photo1.src = image;
   }
 }
