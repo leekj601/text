@@ -18,7 +18,6 @@ if (API) {
   });
 
   recognition.onstart = () => {
-    // 초기 이미지 인식
     recognizeImage(photo1);
     recognizeImage(photo2);
   };
@@ -30,13 +29,13 @@ if (API) {
       const transcript = results[i][0].transcript;
       speechResult.textContent = transcript;
 
-      if (transcript.includes(photo1.src)) {
+      if (transcript.includes(photo1.src.split('/').pop().split('.')[0])) {
         changePhoto(photo1);
-        break; // 이미지 변경 후 반복문 종료
+        break;
       }
-      if (transcript.includes(photo2.src)) {
+      if (transcript.includes(photo2.src.split('/').pop().split('.')[0])) {
         changePhoto(photo2);
-        break; // 이미지 변경 후 반복문 종료
+        break;
       }
     }
   };
@@ -48,12 +47,21 @@ if (API) {
   }
 
   function changePhoto(photo) {
-    const newImageIndex = getRandomImageIndex();
+    const currentImageName = photo.src.split('/').pop().split('.')[0];
+    const newImageIndex = getRandomImageIndexExcept(currentImageName);
     const newImagePath = imagePaths[newImageIndex];
     photo.src = newImagePath;
   }
 
   function getRandomImageIndex() {
     return Math.floor(Math.random() * imagePaths.length);
+  }
+
+  function getRandomImageIndexExcept(excludedImageName) {
+    const availableImages = imagePaths.filter((imagePath) => {
+      const imageName = imagePath.split('/').pop().split('.')[0];
+      return imageName !== excludedImageName;
+    });
+    return Math.floor(Math.random() * availableImages.length);
   }
 }
