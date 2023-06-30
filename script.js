@@ -38,22 +38,12 @@ if (API) {
     changePhoto2(photo2);
   });
 
-  function changePhoto(photoElement) {
-    const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
-    const filename = extractFileName(image);
-    photoElement.src = image;
-    return filename;
-  }
-
-
   function changephoto1() {
-    const photo1 = document.querySelector('#photo1');
     const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
     const filename1=extractFileName(image);
     photo1.src = image;
   }
   function changephoto2() {
-    const photo2 = document.querySelector('#photo2');
     const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
     const filename2=extractFileName(image);
     photo2.src = image;
