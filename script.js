@@ -20,6 +20,7 @@ if (API) {
     for(const result of event.results) {
         const transcript = results[0].transcript;
         speechResult.textContent = transcript;
+        outputElement.textContent = transcript;
         if (transcript.includes("감자")) {
             changephoto1();
           }
