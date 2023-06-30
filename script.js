@@ -42,8 +42,17 @@ if (API) {
   }
 
   function changePhoto(photo) {
-    const newImageIndex = Math.floor(Math.random() * imagePaths.length);
+    const newImageIndex = getRandomImageIndex(photo.src);
     const newImagePath = imagePaths[newImageIndex];
     photo.src = newImagePath;
+  }
+
+  function getRandomImageIndex(currentImagePath) {
+    const currentIndex = imagePaths.findIndex(path => path === currentImagePath);
+    let newIndex;
+    do {
+      newIndex = Math.floor(Math.random() * imagePaths.length);
+    } while (newIndex === currentIndex);
+    return newIndex;
   }
 }
