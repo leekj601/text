@@ -35,19 +35,6 @@ if (API) {
     }
   };
 
-  window.addEventListener('load', () => {
-    filename1 = changePhoto(photo1);
-    filename2 = changePhoto(photo2);
-  });
-
-  function changePhoto(photoElement) {
-    const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
-    const filename = extractFileName(image);
-    photoElement.src = image;
-    return filename;
-  }
-
-
   function changephoto1() {
     const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
     filename1=extractFileName(image);
