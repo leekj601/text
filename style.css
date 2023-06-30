@@ -10,6 +10,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .speech-recognition{
@@ -31,3 +32,14 @@
     background-color: black;
     color: white;
 }
+
+.highlight-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid red;
+  }

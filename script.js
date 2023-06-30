@@ -46,8 +46,13 @@ if (API) {
         photo1.src = image;
         usedImages.push(image);
         message1.textContent = '';
+        circle1.style.display = 'block';
+        setTimeout(() => {
+          circle2.style.display = 'none';
+        }, 3000); 
       }
       else {
+        photo1.style.display='none'
         message1.textContent = '이미지가 끝났습니다.';
       }
   }
@@ -59,9 +64,14 @@ if (API) {
         photo2.src = image;
         usedImages.push(image);
         message2.textContent = '';
-      }
+        circle2.style.display = 'block';
+        setTimeout(() => {
+          circle2.style.display = 'none';
+        }, 3000); 
+    }
       else {
-        message2.textContent = '이미지가 다 나왔습니다.';
+        photo2.style.display='none'
+        message2.textContent = '이미지가 끝났습니다.';
       }
   }
   function extractFileName(imagePath) {
