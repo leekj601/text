@@ -1,7 +1,7 @@
 const API = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 if (API) {
-  const imagePaths = ['감자.jpg','고구마.jpg','고양이.jpg', '강아지.jpg', '세탁기.jpg',];
+  const imagePaths = ['고양이.jpg', '강아지.jpg', '세탁기.jpg',];
   const recognition = new API();
 
   recognition.continuous = true;
@@ -39,11 +39,13 @@ if (API) {
     const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
     filename1=extractFileName(image);
     photo1.src = image;
+    imagePaths = imagePaths.filter((path, i) => i !== index);
   }
   function changephoto2() {
     const image = imagePaths[Math.floor(Math.random() * imagePaths.length)];
     filename2=extractFileName(image);
     photo2.src = image;
+    imagePaths = imagePaths.filter((path, i) => i !== index);
   }
   function extractFileName(imagePath) {
     return imagePath.match(/(.+)\./)[1];
