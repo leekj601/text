@@ -48,7 +48,7 @@ if (API) {
         message1.textContent = '';
         circle1.style.display = 'block';
         setTimeout(() => {
-          circle2.style.display = 'none';
+          circle1.style.display = 'none';
         }, 3000); 
       }
       else {
