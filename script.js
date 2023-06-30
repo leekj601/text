@@ -41,15 +41,20 @@ if (API) {
     const randomImagePath = imagePaths[randomIndex];
     imagePaths.splice(randomIndex, 1);
   
+    let updatedImagePath = "";
+    
     // 말한 이미지에 해당하는 이미지 경로로 교체합니다.
     if (randomImagePath === "감자.jpg") {
-      imagePaths.push("세탁기.jpg");
+      updatedImagePath = "세탁기.jpg";
     } else if (randomImagePath === "고구마.jpg") {
-      imagePaths.push("감자.jpg");
+      updatedImagePath = "감자.jpg";
     }
+  
+    imagePaths.push(updatedImagePath);
   
     const updatedRandomIndex = Math.floor(Math.random() * imagePaths.length);
     const updatedRandomImagePath = imagePaths[updatedRandomIndex];
     photo1.src = updatedRandomImagePath;
   }
+  
 }
