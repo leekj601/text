@@ -38,10 +38,28 @@ if (API) {
       return;
     }
   
-    const randomIndex = Math.floor(Math.random() * imagePaths.length);
-    const randomImagePath = imagePaths[randomIndex];
-    photo1.src = imagePath;
-    photo2.src = randomImagePath;
-    imagePaths.splice(randomIndex, 1);
+    let photoToChange = null;
+  
+    if (imagePath === "감자.jpg") {
+      photoToChange = photo1;
+    } else if (imagePath === "고구마.jpg") {
+      photoToChange = photo2;
+    }
+  
+    if (photoToChange) {
+      const randomIndex = Math.floor(Math.random() * imagePaths.length);
+      const randomImagePath = imagePaths[randomIndex];
+      photoToChange.src = imagePath;
+  
+      // 이미지 경로에서 해당 이미지를 제거합니다.
+      imagePaths.splice(randomIndex, 1);
+  
+      if (photoToChange === photo1) {
+        photo2.src = randomImagePath;
+      } else if (photoToChange === photo2) {
+        photo1.src = randomImagePath;
+      }
+    }
   }
+  
 }
