@@ -1,54 +1,34 @@
-const API = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-if (API) {
-  const imagePaths = ['감자.jpg', '고구마.jpg', '고양이.jpg', '강아지.jpg', '세탁기.jpg'];
-  const imageNames = ['감자', '고구마', '고양이', '강아지', '세탁기'];
-  const recognition = new API();
-
-  recognition.continuous = true;
-  recognition.lang = 'ko-kr';
-
-  const button = document.querySelector('.speech-recognition');
-  const speechResult = document.querySelector('.result');
-
-  button.addEventListener('click', () => {
-    recognition.start();
-    button.textContent = 'Listening...';
-  });
-
-  recognition.onresult = (event) => {
+recognition.onresult = (event) => {
     const results = event.results;
-
+  
     for (let i = 0; i < results.length; i++) {
       const transcript = results[i][0].transcript;
       speechResult.textContent = transcript;
-
-      for (let j = 0; j < imagePaths.length; j++) {
-        const imageName = imageNames[j];
-        if (transcript.includes(imageName)) {
-          changephoto(j);
-          speechResult.textContent = imageName;
-          break;
+  
+      if (imagePaths.some(photo => transcript.includes(photo.split('.')[0]))) {
+        const photoIndex = imagePaths.findIndex(photo => transcript.includes(photo.split('.')[0]));
+        if (photoIndex !== -1) {
+          changephoto(photoIndex);
         }
       }
     }
   };
-
-  function changephoto(photoNumber) {
+  
+  function changephoto(photoIndex) {
     const photo1 = document.querySelector('#photo1');
     const photo2 = document.querySelector('#photo2');
-
+  
     let newImageIndex;
     do {
       newImageIndex = Math.floor(Math.random() * imagePaths.length);
-    } while (newImageIndex === photoNumber);
-
-    if (photoNumber === 0) {
+    } while (newImageIndex === photoIndex);
+  
+    if (photoIndex === 0) {
       const image = imagePaths[newImageIndex];
       photo1.src = image;
-    } else if (photoNumber === 1) {
+    } else if (photoIndex === 1) {
       const image = imagePaths[newImageIndex];
       photo2.src = image;
     }
   }
-}
+  
